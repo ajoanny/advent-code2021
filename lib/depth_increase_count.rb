@@ -8,3 +8,18 @@ def depth_increase_count measures
   end
 end
 
+def depth_increase_count_pattern measures
+  case measures
+    in []
+      0
+    in [_]
+      0
+    in [a, b, *]
+      if a < b
+        1 + depth_increase_count_pattern(measures[1..-1])
+      else
+        depth_increase_count_pattern measures[1..-1]
+      end
+  end
+end
+

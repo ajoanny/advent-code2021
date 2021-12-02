@@ -43,4 +43,41 @@ describe 'DepthIncrease' do
       end
     end
   end
+
+  describe '#depth_increase_count_pattern' do
+    context 'when there is no entries' do
+      it 'returns 0' do
+        depth_measurement = []
+        expect(depth_increase_count_pattern(depth_measurement)).to eq 0
+      end
+    end
+
+    context 'when there are entries' do
+      context 'when second element is bigger than the first' do
+        it 'returns 1' do
+          depth_measurement = [1, 2]
+          expect(depth_increase_count_pattern(depth_measurement)).to eq 1
+        end
+      end
+      context 'when first element is bigger than the second' do
+        it 'returns 0' do
+          depth_measurement = [4, 3]
+          expect(depth_increase_count_pattern(depth_measurement)).to eq 0
+        end
+      end
+      context 'when there is one element' do
+        it 'returns 0' do
+          depth_measurement = [4]
+          expect(depth_increase_count_pattern(depth_measurement)).to eq 0
+        end
+      end
+
+      context 'when there are more than two elements' do
+        it 'returns 0' do
+          depth_measurement = [4, 6, 7, 5, 5, 10, 1, 4]
+          expect(depth_increase_count_pattern(depth_measurement)).to eq 4
+        end
+      end
+    end
+  end
 end
